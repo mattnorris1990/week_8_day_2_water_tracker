@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import MainPage from './pages/MainPage';
-import { useDarkMode } from './hooks/useDarkMode';
+import { useToggle } from './hooks/useToggle'
 
 function App() {
 
-  let darkMode = useDarkMode()
+  const [isDarkMode, setIsDarkMode] = useToggle(false);
 
   return (
-    <div className={darkMode.isDarkMode ? "dark" : "light"}>
-      <button onClick={darkMode.toggleDarkMode}>Dark/Light</button>
+    <div className={isDarkMode ? "dark" : "light"}>
+      <button onClick={setIsDarkMode}>Dark/Light</button>
       <MainPage />
     </div>
   );

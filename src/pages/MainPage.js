@@ -5,14 +5,14 @@ import '../App.css';
 import Header from '../components/Header';
 import TrackerContainer from '../containers/TrackerContainer';
 import UserContext from '../context/UserContext';
-import { useModal } from '../hooks/useModal';
+import { useToggle } from '../hooks/useToggle';
 
 const MainPage = () => {
 
     const [name, setName] = useState('Stranger');
     const [goal, setGoal] = useState(1);
 
-    let modal = useModal()
+    const [isModalOpen, setIsModalOpen] = useToggle(true)
 
     const handleNameChange = (e) => {
         setName(e.target.value)
@@ -25,7 +25,7 @@ const MainPage = () => {
     return (
         <>
             <Modal
-                isOpen={modal.isModalOpen}
+                isOpen={isModalOpen}
                 ariaHideApp={false}
                 contentLabel="User options"
             >
@@ -34,7 +34,7 @@ const MainPage = () => {
                 <br></br>
                 <label htmlFor='goal'>Your goal: </label>
                 <input type="number" min="1" name="goal" defaultValue={goal} onChange={handleGoalChange} />
-                <button onClick={modal.toggleModal}>OK</button>
+                <button onClick={setIsModalOpen}>OK</button>
             </Modal>
             <UserContext.Provider value = {{name, goal}}>
             <Header />

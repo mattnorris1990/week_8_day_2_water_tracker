@@ -8,5 +8,7 @@ export const useDarkMode = () => {
             setIsDarkMode(!isDarkMode);
         }
 
+        
+
         return {isDarkMode, toggleDarkMode}
     }
